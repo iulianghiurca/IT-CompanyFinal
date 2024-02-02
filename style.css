@@ -1,0 +1,354 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+/* Reset style*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* General style*/
+html {
+  scroll-behavior: smooth; /*scroolo merge mai lent*/
+}
+body {
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  color: #111;
+  line-height: 1.4;
+  text-decoration: none;
+}
+.container {
+  max-width: 1200px; /*chiar daca  ecranul e mai mare de 1200px*/
+  margin: 0 auto; /*alineiem la centru pe orizontala*/
+  padding: 0 1rem; /*in partea satnga si dreapta 1 rem*/
+}
+.btn-primary {
+  text-decoration: none;
+  color: #fff;
+  background-color: #0673bc;
+  display: inline-block; /*ca sa putem add pading*/
+  padding: 1rem 2rem;
+  border-radius: 5px;
+  transition: all 0.5 ease; /* add transitie*/
+  border: none;
+  cursor: pointer;
+}
+.btn-primary:hover {
+  color: #0673bc;
+  background-color: #fff; /*transitie ptr hover*/
+}
+section:not(.hero) {
+  /*nu se aplica style ptr section hero*/
+  padding: 6rem 0;
+}
+section > .section-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 0.5rem; /*spatiu sub Servicii*/
+}
+section > .section-subtitle {
+  text-align: center;
+  color: #6c757d;
+  margin-bottom: 3rem; /*spatiu intre paragraf si Web developer*/
+}
+
+/* Header style*/
+header {
+  color: #fff;
+  background-color: #212529;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+header > .container {
+  /*luam primul element cu class container din elementul header, primul copil*/
+  display: flex; /*il transformam intrun flex container, elementele sunt puse toate pe acelsai rand*/
+  align-items: center; /*le aliniem la centru pe verticala*/
+  justify-content: space-between; /*spatiu intre flex itemi*/
+  padding-top: 1rem; /*spatiu sus*/
+  padding-bottom: 1rem; /*spatiu jos*/
+  flex-wrap: wrap; /*asta am add apoi...citeste mai jos*/
+}
+/* Acum sa trecem elementele care sunt in colt:servicii, proiecte...*/
+header .btn-toggle {
+  background: transparent;
+  color: #fff;
+  border: solid 2px #fff;
+  border-radius: 5px;
+  padding: 0.5rem;
+}
+
+header .navigation {
+  flex-basis: 100%; /*il face sa ocupe tot spatiul disponibil pe latime, e tras in partea stanga. ptr al face sa se mute pe un nou rand add la header> .container: flex-wrap:wrap;*/
+  margin-top: 1rem; /* am add acest margin la minutul 25.19*/
+  display: none;
+}
+header .navigation.active {
+  display: block;
+}
+header .logo a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+header .nav-items {
+  list-style: none;
+}
+.nav-items .nav-link {
+  text-decoration: none;
+  color: #fff;
+  padding: 0.5rem 0; /*ca acest padding sa aibe efect, trebuie sa le transformam din elemente inline, in elemnte de tip inline block, sau block. Aici facem elemente de tip block, pe toata latimea disponibila, nu inline block*/
+  display: block;
+  border-radius: 5px;
+  transition: all 0.5s ease; /*all inseamna pe toate din :hover*/
+}
+.nav-items .nav-link:hover {
+  background-color: #0673bc;
+  padding-left: 0.5rem; /*transitia e brusca, add la .nav-items .navlink: transition*/
+}
+
+/* Hero style */
+
+.hero {
+  height: 90vh; /*adica 90% din inaltimea ferestrei browserului*/
+  background: url("./images/hero-bg.jpg");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative; /*am add apoi position:relative*/
+}
+.hero-overlay {
+  color: #fff;
+  background: #00000080;
+  position: absolute;
+  inset: 0; /*vedem ca el este pozitionat absolut fata de vieport. noi trebuie sa l pozitionam absolut fata de elementul cu clasa hero*/
+  display: flex; /*aliniem continutul acestui div(.hero-overlay) la centru pe orizontala si verticala*/
+  flex-direction: column;
+  align-items: center; /*aliniem la cantru pe orizontala*/
+  justify-content: center; /*aliniem la centru pe verticala*/
+}
+.hero-content {
+  text-align: center;
+  text-wrap: balance; /*balanseaza textul, e mai frumos scris*/
+}
+.hero-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+}
+.hero-content p {
+  margin-bottom: 2rem;
+}
+
+/*Services style*/
+.services > .container {
+  /*preluam primul element cu clasa container din elementul cu clasa services*/
+  display: grid; /*pt a-l face un grid container*/
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(300px, 1fr)
+  ); /*creaza coloane de 300px, in momentul in care acea coloana devine mica si nu mai are latimea de 300px, face coloana sa ocupe tot spatiul si o trcee pe un nou rand*/
+  gap: 2rem; /*spatiu intre coloane*/
+}
+.service-card {
+  text-align: center;
+  background-color: #f8f9fa;
+  padding: 1rem;
+  transition: box-shadow 0.5s ease;
+}
+.service-card:hover {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+.service-card .service-title {
+  font-size: 1.125rem;
+  margin-bottom: 0.5rem;
+}
+/* Project style*/
+.projects {
+  background-color: #f8f9fa;
+}
+.projects > .container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  justify-items: center;
+}
+.project-card {
+  background-color: #fff;
+  max-width: 400px; /*dimensiunea maxima in latime*/
+}
+.project-card .project-link {
+  display: block; /*ptr ca linkurile sunt inline*/
+  position: relative; /*ptr ca vrem sa pozitionam elementul(project-overlay) absolut fata de elementul cu clasa project-link*/
+  height: 300px;
+}
+.project-card .project-overlay {
+  font-weight: bold;
+  color: #fff;
+  background-color: #0673bc;
+  position: absolute;
+  inset: 0; /*ptr ca avem position absolut trebuie sa setam prescurtarea la top, right b...cu inset*/
+  display: flex; /* ca sa setam textul la centru, folosim flex*/
+  align-items: center;
+  justify-content: center;
+  opacity: 0; /*se va ascunde acest element, citeste explicatia din caier*/
+  transition: opacity 0.25s ease-in-out;
+}
+.project-card .project-overlay span {
+  border: solid 3px #fff;
+  padding: 1rem;
+  border-radius: 5px;
+}
+.project-card .project-link img {
+  max-width: 100%;
+  height: 100%;
+  object-fit: cover; /*scalam in cazul in care exista imagini cu dimensiuni diferita*/
+}
+.project-card .project-link:hover .project-overlay {
+  opacity: 1;
+}
+.project-card .project-details {
+  text-align: center;
+  padding: 1rem;
+}
+.project-card .project-details h3 {
+  margin-bottom: 0.5rem;
+}
+
+/* Team style*/
+.team > .container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+}
+.team-member {
+  /*aliniez elementele la centru pe orizontala*/
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.team-member img {
+  max-width: 200px;
+  border-radius: 50%;
+  border: solid 5px #bbb;
+}
+.team-member p {
+  color: #6c757d;
+}
+.team-member .member-socials {
+  list-style: none;
+  display: flex;
+  gap: 0.5rem;
+}
+.team-member .member-socials a {
+  text-decoration: none;
+  color: #fff;
+  background-color: #0673bc;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.5s ease;
+}
+.team-member .member-socials a:hover {
+  color: #0673bc;
+  background-color: #f8f9fa;
+}
+
+/*Contact style*/
+.contact {
+  background-color: #f8f9fa;
+}
+.contact-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.contact-form .form-message {
+  grid-column: 1 / span 2; /*incepe de la prima linie si se intinde doua celule*/
+}
+.contact-form input,
+.contact-form textarea {
+  font-family: inherit;
+  padding: 1rem;
+  width: 100%;
+  border: none;
+}
+.contact-form .btn-primary {
+  grid-column: 1 / span 2; /*butonul ocupa doua celule*/
+}
+
+/*Footer style*/
+footer {
+  color: #fff;
+  background-color: #212529;
+  padding: 1.25rem 0;
+}
+footer > .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+footer .social-items {
+  list-style: none;
+  display: flex;
+  gap: 0.75rem;
+}
+footer .social-items .social-link {
+  text-decoration: none;
+  color: #fff;
+}
+
+/* Media Query style*/
+@media screen and (min-width: 768px) {
+  /*general style*/
+  /*vreau ca butonul (vreau oferta) sa fie mai mare*/
+  .btn-primary {
+    font-size: 1rem;
+    padding: 1rem 3rem;
+  }
+  /*Header style*/
+  header .btn-toggle {
+    display: none; /*il ascundem*/
+  }
+  header .navigation {
+    display: flex; /*linkurile sunt unele sub altele*/
+    flex-basis: auto; /*le ducem in parte dreapta*/
+    margin: 0; /*eliminam marginea din partea de sus*/
+  }
+  header .nav-items {
+    /*afisam linkurile pe acelasi rand*/
+    display: flex;
+    gap: 1rem;
+  }
+  .nav-items .nav-link {
+    /*e paddingul prea mare in partea stanga cand dai clik*/
+    padding: 0.5rem; /*acum paddingul e bun*/
+  }
+  /*Hero style*/
+  .hero-content {
+    max-width: 700px; /*acest div devine mai mic, scrisul nu e labarta*/
+  }
+  .hero-content h1 {
+    font-size: 3.5rem;
+  }
+  .hero-content p {
+    font-size: 1.125rem;
+  }
+  /*Contact style*/
+  .contact-form .btn-primary {
+    width: auto;
+    justify-self: center; /*butonul devine mai mic, cat e nevoie*/
+  }
+  /*Footer style*/
+  footer > .container {
+    flex-direction: row; /*le punem pe acelasi rand*/
+    justify-content: space-between;
+  }
+}
